@@ -6,6 +6,8 @@
 # @File     :   tools.py
 # @Desc     :   
 
+from os import path
+from re import sub
 from time import perf_counter
 
 
@@ -38,3 +40,25 @@ class Timer(object):
             return f"{self._description} took {self._elapsed:.{self._precision}f} seconds."
         else:
             return f"{self._description} has not been started."
+
+
+def tokenizer(text: str):
+    """ Tokenize the text by removing special characters and lowercasing the text
+
+    :param text: str, the text to be tokenized
+    :return: str, the tokenized text
+    """
+    pattern: str = r"[^A-Za-z0-9 ]+"
+    cleaned = sub(pattern, "", text.lower())
+    words = cleaned.split()
+    return words
+
+
+def labels_getter() -> list:
+    """ Get the labels from the labels.txt file
+
+    :return: list, the list of labels
+    """
+    with open(path.join(path.dirname(__file__), "labels.txt"), "r") as file:
+        labels = file.read().splitlines()
+    return labels
