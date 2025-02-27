@@ -29,7 +29,7 @@ class Timer(object):
         print(f"{self._description} started.")
         return self
 
-    def __exit__(self, *args):
+    def __exit__(self, exc_type, exc_val, exc_tb):
         self._end = perf_counter()
         self._elapsed = self._end - self._start
 
