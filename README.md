@@ -4,8 +4,8 @@ streamlit platform.
 
 **ACKNOWLEDGEMENT**  
 We would like to thank Andrew L. Maas et al. for providing the dataset, which is
-named [Large Movie Review Dataset v1.0](https://ai.stanford.edu/~amaas/data/sentiment/).  
-If you use this dataset in your work, please cite the following paper:
+named [Large Movie Review Dataset v1.0](https://ai.stanford.edu/~amaas/data/sentiment/). If you use this dataset in your
+work, please cite the following paper:
 
 ```
 @InProceedings{maas-EtAl:2011:ACL-HLT2011,
