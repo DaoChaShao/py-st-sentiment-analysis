@@ -13,6 +13,7 @@
 
 ### Docs
 
+- add CHANGELOG.md for version 0.1.0 with initial project features and updates ([a95c929](https://github.com///commit/a95c929756c040d5eb9adab02bd42ebaaf872639))
 - add README file with project introduction and dataset acknowledgment ([8e5ee51](https://github.com///commit/8e5ee511b030737d6d4b1bc9d7235cc272ee74b1))
 
 ### Dependencies
