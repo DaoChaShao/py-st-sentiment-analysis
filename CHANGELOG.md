@@ -5,6 +5,9 @@
 
 ### Features
 
+- add new movie review files with diverse opinions and ratings ([14e03b9](https://github.com///commit/14e03b9e1bb2643da18059c1996f12967d553e56))
+- add tokenizer function and labels getter to process text and retrieve labels ([d27293f](https://github.com///commit/d27293f44c0de417b68132aba7fc299db201a1e7))
+- add tokenizer functionality to process movie review text ([98aca75](https://github.com///commit/98aca75fa10cbff592f752e241faa10d4b188f8d))
 - add Timer class in tools.py for measuring elapsed time ([cd86bd9](https://github.com///commit/cd86bd9d6a2a51fc3c06861eb573e19c779a50ce))
 - add models.py with Opener class for OpenAI API integration ([751c309](https://github.com///commit/751c309cbf727871b9b344c43b0d6bde0c6ff470))
 - add __init__.py with main function and initial setup ([ae0f0e9](https://github.com///commit/ae0f0e96c271203efe98e5afdb8fb125b8be9d9d))
@@ -20,7 +23,8 @@
 
 ### Docs
 
-- update CHANGELOG.md to categorize recent bug fixes and feature additions ([e1cfc80](https://github.com///commit/e1cfc80231f9f8d4c648a7cc09233e04136da8e6))
+- update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
+- update CHANGELOG.md to categorize recent bug fixes and feature additions ([4765ba1](https://github.com///commit/4765ba193641d4394eb5a57d3775d2aba3c3623e))
 - update CHANGELOG.md to include recent feature additions ([8ed498a](https://github.com///commit/8ed498ae4ad2dca6d00ad02b496d446e695a610b))
 - add CHANGELOG.md for version 0.1.0 with initial project features and updates ([9476b62](https://github.com///commit/9476b62677f22f1e0fe2d5ee999d08cae595f263))
 - add README file with project introduction and dataset acknowledgment ([8e5ee51](https://github.com///commit/8e5ee511b030737d6d4b1bc9d7235cc272ee74b1))
