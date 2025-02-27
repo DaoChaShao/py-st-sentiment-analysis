@@ -23,9 +23,9 @@
 
 ### Docs
 
+- update CHANGELOG.md to include recent feature additions ([e1e8fab](https://github.com///commit/e1e8fab76fddd94d70a2f330af308c56d2ab964d))
 - update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
 - update CHANGELOG.md to categorize recent bug fixes and feature additions ([4765ba1](https://github.com///commit/4765ba193641d4394eb5a57d3775d2aba3c3623e))
-- update CHANGELOG.md to include recent feature additions ([8ed498a](https://github.com///commit/8ed498ae4ad2dca6d00ad02b496d446e695a610b))
 - add CHANGELOG.md for version 0.1.0 with initial project features and updates ([9476b62](https://github.com///commit/9476b62677f22f1e0fe2d5ee999d08cae595f263))
 - add README file with project introduction and dataset acknowledgment ([8e5ee51](https://github.com///commit/8e5ee511b030737d6d4b1bc9d7235cc272ee74b1))
 
