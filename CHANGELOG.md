@@ -20,6 +20,7 @@
 
 ### Docs
 
+- update CHANGELOG.md to categorize recent bug fixes and feature additions ([e1cfc80](https://github.com///commit/e1cfc80231f9f8d4c648a7cc09233e04136da8e6))
 - update CHANGELOG.md to include recent feature additions ([8ed498a](https://github.com///commit/8ed498ae4ad2dca6d00ad02b496d446e695a610b))
 - add CHANGELOG.md for version 0.1.0 with initial project features and updates ([9476b62](https://github.com///commit/9476b62677f22f1e0fe2d5ee999d08cae595f263))
 - add README file with project introduction and dataset acknowledgment ([8e5ee51](https://github.com///commit/8e5ee511b030737d6d4b1bc9d7235cc272ee74b1))
