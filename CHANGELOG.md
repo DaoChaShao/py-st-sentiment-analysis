@@ -1,10 +1,11 @@
 <!-- insertion marker -->
 <a name="0.1.0"></a>
 
-## [0.1.0](https://github.com///compare/d270d12481f8b1d9ac2840b2ade2ea498a3f2168...0.1.0) (2025-02-27)
+## [0.1.0](https://github.com///compare/d270d12481f8b1d9ac2840b2ade2ea498a3f2168...0.1.0) (2025-02-28)
 
 ### Features
 
+- add torch dependency to requirements.txt ([fb66f1a](https://github.com///commit/fb66f1a8d7622bd72f591ac5991de01c498658fa))
 - add new movie review files with diverse opinions and ratings ([14e03b9](https://github.com///commit/14e03b9e1bb2643da18059c1996f12967d553e56))
 - add tokenizer function and labels getter to process text and retrieve labels ([d27293f](https://github.com///commit/d27293f44c0de417b68132aba7fc299db201a1e7))
 - add tokenizer functionality to process movie review text ([98aca75](https://github.com///commit/98aca75fa10cbff592f752e241faa10d4b188f8d))
@@ -19,11 +20,12 @@
 
 ### Chore
 
+- delete data files ([3a09b69](https://github.com///commit/3a09b694a044fd76baefde588a8d15e2dc7ef8c6))
 - add pyproject.toml for changelog configuration ([925518d](https://github.com///commit/925518dd69e036be778ae4a8f7343f6e643b3499))
 
 ### Docs
 
-- update CHANGELOG.md to include recent feature additions ([e1e8fab](https://github.com///commit/e1e8fab76fddd94d70a2f330af308c56d2ab964d))
+- update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
 - update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
 - update CHANGELOG.md to categorize recent bug fixes and feature additions ([4765ba1](https://github.com///commit/4765ba193641d4394eb5a57d3775d2aba3c3623e))
 - add CHANGELOG.md for version 0.1.0 with initial project features and updates ([9476b62](https://github.com///commit/9476b62677f22f1e0fe2d5ee999d08cae595f263))
