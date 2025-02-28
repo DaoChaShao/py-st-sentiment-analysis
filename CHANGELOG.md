@@ -5,6 +5,8 @@
 
 ### Features
 
+- implement IMDBDataset class for dataset handling and add tokenizer and labels_getter functions ([ef2f8e5](https://github.com///commit/ef2f8e5a90174f124635322ebd20d05beb62492e))
+- integrate IMDBDataset for dataset handling in main.py ([bcbc028](https://github.com///commit/bcbc0284baec1dcddd25e813cb57172e899c707d))
 - add torch dependency to requirements.txt ([fb66f1a](https://github.com///commit/fb66f1a8d7622bd72f591ac5991de01c498658fa))
 - add new movie review files with diverse opinions and ratings ([14e03b9](https://github.com///commit/14e03b9e1bb2643da18059c1996f12967d553e56))
 - add tokenizer function and labels getter to process text and retrieve labels ([d27293f](https://github.com///commit/d27293f44c0de417b68132aba7fc299db201a1e7))
@@ -20,13 +22,14 @@
 
 ### Chore
 
-- add .gitignore to exclude .DS_Store files ([78af1b9](https://github.com///commit/78af1b9727aef970c6519c660e8718c9d2ccf2be))
+- update .gitignore to exclude .DS_Store files ([4b3ad06](https://github.com///commit/4b3ad06317175204ff814b4e0d94843e6c2032a6))
+- add .gitignore to exclude .DS_Store files ([ad8871f](https://github.com///commit/ad8871fd628d59368adec221072bde78965d1654))
 - delete data files ([3a09b69](https://github.com///commit/3a09b694a044fd76baefde588a8d15e2dc7ef8c6))
 - add pyproject.toml for changelog configuration ([925518d](https://github.com///commit/925518dd69e036be778ae4a8f7343f6e643b3499))
 
 ### Docs
 
-- update CHANGELOG.md for version 0.1.0 release date correction ([35e4125](https://github.com///commit/35e4125935773d7896809c30e3cb5a63536ae2fc))
+- update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
 - update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
 - update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
 - update CHANGELOG.md to categorize recent bug fixes and feature additions ([4765ba1](https://github.com///commit/4765ba193641d4394eb5a57d3775d2aba3c3623e))
