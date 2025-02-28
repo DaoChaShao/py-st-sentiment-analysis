@@ -19,29 +19,41 @@
 }
 """
 
-from utilis.tools import paths_getter, tokenizer, IMDBDataset, Timer, IMDBDataLoader
+from random import randint
+
+from utilis.database import IMDBDataset, IMDBDataLoader
+from utilis.tools import paths_getter, tokenizer, Timer
 
 
 def main() -> None:
     """ Main Function """
     DATASET_PATH: str = "imdb"
     CATEGORY: str = "train"
+
     paths: list[str] = paths_getter(DATASET_PATH, CATEGORY)
-    print(paths[4])
-    # imdb = IMDBDataset(DATASET_PATH, CATEGORY)
-    text = tokenizer(paths[4])
+    index: int = randint(0, len(paths) - 1)
+    text = tokenizer(paths[index])
     print(text)
 
-    # with Timer(2, "IMDB Dataset Processing") as timer:
-    #     dataset = imdb.path_getter()
-    #     print(len(dataset))
-    #     # print(dataset[4])
-    # print(timer)
+    with Timer(2, "IMDB Dataset Processing") as timer:
+        imdb = IMDBDataset(DATASET_PATH, CATEGORY)
+        review, position, labels = imdb[index]
+        # print(len(imdb))
+        print(review)
+        print(position)
+        print(labels)
+    print(timer)
 
-    # batch_size: int = 2
-    # with Timer(2, "IMDB DataLoader Processing") as timer:
-    #     data_loader = IMDBDataLoader(dataset, batch_size)
-    #     print(len(data_loader))
+    batch_size: int = 2
+    with Timer(2, "IMDB DataLoader Processing") as timer:
+        data_loader = IMDBDataLoader(imdb, batch_size)
+        print(len(data_loader))
+        for review, position, label in data_loader:
+            print(len(review))
+            print(len(position))
+            print(label)
+            break
+    print(timer)
 
 
 if __name__ == "__main__":
