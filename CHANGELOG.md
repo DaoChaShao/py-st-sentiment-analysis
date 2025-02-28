@@ -30,6 +30,7 @@
 
 ### Docs
 
+- update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([96cb060](https://github.com///commit/96cb060191a5aae678088ac062cbfb1bf7bb0f30))
 - update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([8f6933c](https://github.com///commit/8f6933cb762c96958aca716dcec0c6834672449d))
 - update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
 - update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
