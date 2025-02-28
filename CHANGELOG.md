@@ -1,10 +1,12 @@
 <!-- insertion marker -->
 <a name="0.1.0"></a>
 
-## [0.1.0](https://github.com///compare/d270d12481f8b1d9ac2840b2ade2ea498a3f2168...0.1.0) (2025-02-28)
+## [0.1.0](https://github.com///compare/d270d12481f8b1d9ac2840b2ade2ea498a3f2168...0.1.0) (2025-03-01)
 
 ### Features
 
+- update main.py to enhance dataset processing with random selection and improved data loading ([198331e](https://github.com///commit/198331e19c391d06a3250839e0be4beccd874b3f))
+- add IMDBDataset and IMDBDataLoader classes for dataset management ([bc9aa18](https://github.com///commit/bc9aa186d97cb9422e13810bac6ddcf1068c3c48))
 - enhance tokenizer and add paths_getter for improved data handling ([875a922](https://github.com///commit/875a92257e51406bdc203806edc0c70f86e295f0))
 - update main.py to integrate paths_getter and tokenizer for dataset processing ([b8e8b03](https://github.com///commit/b8e8b033c5e08d85c109ab1d5099736af70045c4))
 - add contraction mapping for common English contractions ([74e6b58](https://github.com///commit/74e6b58df12267843335ead8c9e5ca305761b604))
@@ -34,7 +36,7 @@
 
 ### Docs
 
-- update CHANGELOG.md to reflect recent feature additions and updates ([b33c689](https://github.com///commit/b33c6894f3b3a864453b666e9d9fff9c5499f47e))
+- update CHANGELOG.md to reflect recent feature additions and updates ([97e5f21](https://github.com///commit/97e5f2157a219cc74fba33c0e63de18ca138d59b))
 - update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([f2772dd](https://github.com///commit/f2772ddcf22079686f49388ccc2450f89f455fb8))
 - update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([8f6933c](https://github.com///commit/8f6933cb762c96958aca716dcec0c6834672449d))
 - update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
@@ -43,6 +45,10 @@
 - update CHANGELOG.md to categorize recent bug fixes and feature additions ([4765ba1](https://github.com///commit/4765ba193641d4394eb5a57d3775d2aba3c3623e))
 - add CHANGELOG.md for version 0.1.0 with initial project features and updates ([9476b62](https://github.com///commit/9476b62677f22f1e0fe2d5ee999d08cae595f263))
 - add README file with project introduction and dataset acknowledgment ([8e5ee51](https://github.com///commit/8e5ee511b030737d6d4b1bc9d7235cc272ee74b1))
+
+### Code Refactoring
+
+- remove IMDBDataset and IMDBDataLoader classes to streamline dataset management ([8f7d5ed](https://github.com///commit/8f7d5ed11401e80fb53b148a42e28a192e1c4886))
 
 ### Dependencies
 
