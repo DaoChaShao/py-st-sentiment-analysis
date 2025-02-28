@@ -6,6 +6,7 @@
 # @File     :   tools.py
 # @Desc     :   
 
+from json import load
 from os import path, listdir
 from re import sub, search
 from time import perf_counter
@@ -47,34 +48,26 @@ class Timer(object):
             return f"{self._description} has not been started."
 
 
-def tokenizer(file_path: str) -> list[str]:
+def tokenizer(file_path: str, normalization: str = "utilis/contraction.json") -> list[str]:
     """ Tokenize the text by removing special characters and lowercasing the text
 
     :param file_path: str, the file path to be tokenized
+    :param normalization: str, the file path to the normalization file
     :return: list[str], the list of words
     """
     with open(file_path, "r", encoding="UTF-8") as file:
         text = file.read()
 
+    with open(normalization, "r", encoding="UTF-8") as nor:
+        contractions = load(nor)
+
+    for pattern, replacement in contractions.items():
+        text = sub(pattern, replacement, text)
+
     pattern: str = r"[^A-Za-z0-9 ]+"
     cleaned = sub(pattern, "", text.lower())
     words = cleaned.split()
     return words
-
-
-TEXT: str = ("Once again Mr. Costner has dragged out a movie for far longer than necessary. "
-             "Aside from the terrific sea rescue sequences, "
-             "of which there are very few I just did not care about any of the characters. "
-             "Most of us have ghosts in the closet, and Costner's character are realized early on, "
-             "and then forgotten until much later, "
-             "by which time I did not care. The character we should really care about is a very cocky, "
-             "overconfident Ashton Kutcher. "
-             "The problem is he comes off as kid who thinks he's better than anyone else around him and shows no signs of a cluttered closet. "
-             "His only obstacle appears to be winning over Costner. "
-             "Finally when we are well past the half way point of this stinker, "
-             "Costner tells us all about Kutcher's ghosts. "
-             "We are told why Kutcher is driven to be the best with no prior inkling or foreshadowing. "
-             "No magic here, it was all I could do to keep from turning it off an hour in.")
 
 
 def labels_getter(file_path: str) -> tuple[int, int]:
@@ -86,22 +79,52 @@ def labels_getter(file_path: str) -> tuple[int, int]:
     return int(match.group(1)), int(match.group(2))
 
 
+def paths_getter(root_file_path: str, category: str) -> list[str] | None:
+    """ Get the file paths for the training and testing data
+
+    :param root_file_path: str, the file path to the dataset
+    :param category: str, the category of the data
+    """
+    if not path.exists(root_file_path):
+        raise FileNotFoundError(f"{root_file_path} does not exist.")
+
+    ignore: list = [".DS_Store", ".gitignore"]
+
+    paths = []
+    for file in listdir(root_file_path):
+        if file not in ignore:
+            sub_path = path.join("imdb/", file)
+            if category == "train" and file.endswith("train"):
+                for file_type in listdir(sub_path):
+                    if file_type not in ignore:
+                        type_path = path.join(sub_path, file_type)
+                        paths.extend([path.join(type_path, data) for data in listdir(type_path) if data not in ignore])
+            elif category == "test" and file.endswith("test"):
+                for file_type in listdir(sub_path):
+                    if file_type not in ignore:
+                        type_path = path.join(sub_path, file_type)
+                        paths.extend([path.join(type_path, data) for data in listdir(type_path) if data not in ignore])
+    return paths
+
+
 class IMDBDataset(Dataset):
     """ The IMDB Dataset Class """
 
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str, category: str = "train") -> None:
         """ Initialize the IMDB Dataset Class
 
         :param file_path: str, the file path to the dataset
         """
         self._file_path: str = file_path
+        self._category: str = category
         self._train: list = []
         self._test: list = []
         self._train_paths: list = []
         self._test_paths: list = []
         self._ignore: list = [".DS_Store", ".gitignore"]
+        self.path_getter()
 
-    def path_getter(self, category: str = "train") -> None:
+    def path_getter(self) -> list[str] | None:
         """ Get the file paths for the training and testing data
 
         :param category: str, the category of the data
@@ -118,7 +141,7 @@ class IMDBDataset(Dataset):
                     self._test = [path.join(file, group) for group in listdir(file) if group not in self._ignore]
                     # print(f"Testing Data: {self._test}")
 
-            match category:
+            match self._category:
                 case "train":
                     for file in self._train:
                         self._train_paths.extend(
@@ -183,6 +206,7 @@ class Seed(object):
         """ Initialize the Seed class
 
         :param randomness: int, the random seed
+        :param description: str, the description of the seed
         """
         self._randomness: int = randomness
         self._description: str = description
@@ -216,3 +240,21 @@ class Seed(object):
 
     def __repr__(self):
         return f"The seed of {self._description} is {self._randomness} and OUT."
+
+
+class IMDBDataLoader(DataLoader):
+    """ The IMDB Data Loader Class """
+
+    def __init__(self, dataset, batch: int, shuffle: bool = True):
+        super().__init__(
+            dataset=dataset,
+            batch_size=batch,
+            shuffle=shuffle,
+            collate_fn=self.collate_fn
+        )
+
+    @staticmethod
+    def collate_fn(batch):
+        """ Collate the batch size """
+        comments, labels = zip(*batch)
+        return comments, labels
