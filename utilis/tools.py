@@ -11,6 +11,10 @@ from re import sub, search
 from time import perf_counter
 from torch.utils.data import Dataset, DataLoader
 
+from random import seed
+from numpy import random
+from torch import manual_seed, cuda, backends, initial_seed
+
 
 class Timer(object):
     """ A simple timer class to measure the elapsed time """
@@ -134,25 +138,6 @@ class IMDBDataset(Dataset):
         """ Get the length of the dataset """
         return len(self._train_paths) + len(self._test_paths)
 
-    def __getitem__(self, index: int, category: str = "train") -> tuple[list[str], int, int] | None:
-        """ Get the item of the dataset
-
-        :param index: int, the index of the dataset
-        :param category: str, the category of the data
-        :return: tuple[list[str], int, int], the words, position, and label
-        """
-        match category:
-            case "train":
-                file_path: str = self._train_paths[index]
-                words: list[str] = tokenizer(file_path)
-                position, label = labels_getter(file_path)
-                return words, position, label
-            case "test":
-                file_path: str = self._test[index]
-                words: list[str] = tokenizer(file_path)
-                position, label = labels_getter(file_path)
-                return words, position, label
-
     def labels_checker(self) -> tuple[int, int, int]:
         """ Check the labels of the dataset """
         pos_labels: list[int] = [1, 2, 3, 4]
@@ -171,12 +156,63 @@ class IMDBDataset(Dataset):
                 nan.append(label)
         return len(pos), len(neg), len(nan)
 
-# def set_seed(seed: int = 42):
-#     """ 设置 PyTorch 及相关库的随机种子，保证实验可复现 """
-#     random.seed(seed)  # 设置 Python 内置 random 模块的随机种子
-#     np.random.seed(seed)  # 设置 NumPy 的随机种子
-#     torch.manual_seed(seed)  # 设置 PyTorch 的 CPU 随机种子
-#     torch.cuda.manual_seed(seed)  # 设置 PyTorch 的 GPU 随机种子（单个 GPU）
-#     torch.cuda.manual_seed_all(seed)  # 设置所有 GPU 的随机种子（多个 GPU）
-#     torch.backends.cudnn.deterministic = True  # 确保每次卷积计算都是确定性的
-#     torch.backends.cudnn.benchmark = False  # 可能会降低运行速度，但保证结果一致
+    def __getitem__(self, index: int, category: str = "train") -> tuple[list[str], int, int] | None:
+        """ Get the item of the dataset
+
+        :param index: int, the index of the dataset
+        :param category: str, the category of the data
+        :return: tuple[list[str], int, int], the words, position, and label
+        """
+        match category:
+            case "train":
+                file_path: str = self._train_paths[index]
+                words: list[str] = tokenizer(file_path)
+                position, label = labels_getter(file_path)
+                return words, position, label
+            case "test":
+                file_path: str = self._test[index]
+                words: list[str] = tokenizer(file_path)
+                position, label = labels_getter(file_path)
+                label = 0 if label < 5 else 1
+                return words, position, label
+
+
+class Seed(object):
+
+    def __init__(self, randomness: int = 9527, description: str = None):
+        """ Initialize the Seed class
+
+        :param randomness: int, the random seed
+        """
+        self._randomness: int = randomness
+        self._description: str = description
+
+    def __enter__(self):
+        """ Set the seed for the random number generators """
+        seed(self._randomness)  # Set the Python random seed
+        random.seed(self._randomness)  # Set the NumPy random seed
+        manual_seed(self._randomness)  # Set the PyTorch CPU random seed
+
+        backends.cudnn.deterministic = True  # Ensure the results are reproducible
+        backends.cudnn.benchmark = False  # Ensure the results are reproducible; however, the performance may be slower
+
+        if cuda.is_available():
+            cuda.manual_seed(self._randomness)  # Set the PyTorch GPU random seed, single GPU
+            cuda.manual_seed_all(self._randomness)  # Set the PyTorch GPU random seed, all GPUs
+        print(f"The seed of {self._description} is IN.")
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """ Reset the seed for the random number generators """
+        seed(None)  # Reset Python's random seed
+        random.seed(None)  # Reset NumPy's random seed
+        manual_seed(initial_seed())  # Reset PyTorch's seed
+
+        backends.cudnn.deterministic = False  # Restore normal performance
+        backends.cudnn.benchmark = True  # Allow optimization
+
+        if cuda.is_available():
+            cuda.manual_seed(initial_seed())  # Reset PyTorch GPU seed
+            cuda.manual_seed_all(initial_seed())  # Reset PyTorch GPU seed for all GPUs
+
+    def __repr__(self):
+        return f"The seed of {self._description} is {self._randomness} and OUT."
