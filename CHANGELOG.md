@@ -29,6 +29,7 @@
 
 ### Docs
 
+- update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([37905cc](https://github.com///commit/37905ccf67137220c4f19879de2f0d2f40faba61))
 - update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
 - update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
 - update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
