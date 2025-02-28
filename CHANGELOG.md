@@ -5,6 +5,7 @@
 
 ### Features
 
+- add Seed class for reproducibility and update __getitem__ method for test category ([973b9d4](https://github.com///commit/973b9d46a7eec3f745146481326cbcee8de01b71))
 - implement IMDBDataset class for dataset handling and add tokenizer and labels_getter functions ([ef2f8e5](https://github.com///commit/ef2f8e5a90174f124635322ebd20d05beb62492e))
 - integrate IMDBDataset for dataset handling in main.py ([bcbc028](https://github.com///commit/bcbc0284baec1dcddd25e813cb57172e899c707d))
 - add torch dependency to requirements.txt ([fb66f1a](https://github.com///commit/fb66f1a8d7622bd72f591ac5991de01c498658fa))
@@ -29,7 +30,7 @@
 
 ### Docs
 
-- update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([37905cc](https://github.com///commit/37905ccf67137220c4f19879de2f0d2f40faba61))
+- update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([8f6933c](https://github.com///commit/8f6933cb762c96958aca716dcec0c6834672449d))
 - update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
 - update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
 - update README.md for improved dataset citation formatting ([185382d](https://github.com///commit/185382d68e246fbbb89f4748396a388e1a28bcb4))
