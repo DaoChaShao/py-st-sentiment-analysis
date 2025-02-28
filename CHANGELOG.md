@@ -5,6 +5,10 @@
 
 ### Features
 
+- enhance tokenizer and add paths_getter for improved data handling ([875a922](https://github.com///commit/875a92257e51406bdc203806edc0c70f86e295f0))
+- update main.py to integrate paths_getter and tokenizer for dataset processing ([b8e8b03](https://github.com///commit/b8e8b033c5e08d85c109ab1d5099736af70045c4))
+- add contraction mapping for common English contractions ([74e6b58](https://github.com///commit/74e6b58df12267843335ead8c9e5ca305761b604))
+- add .gitignore to exclude __pycache__ directories ([72aea2b](https://github.com///commit/72aea2b44a0f40f68fd9895406cc93843e91d8b4))
 - add Seed class for reproducibility and update __getitem__ method for test category ([973b9d4](https://github.com///commit/973b9d46a7eec3f745146481326cbcee8de01b71))
 - implement IMDBDataset class for dataset handling and add tokenizer and labels_getter functions ([ef2f8e5](https://github.com///commit/ef2f8e5a90174f124635322ebd20d05beb62492e))
 - integrate IMDBDataset for dataset handling in main.py ([bcbc028](https://github.com///commit/bcbc0284baec1dcddd25e813cb57172e899c707d))
@@ -30,7 +34,7 @@
 
 ### Docs
 
-- update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([96cb060](https://github.com///commit/96cb060191a5aae678088ac062cbfb1bf7bb0f30))
+- update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([f2772dd](https://github.com///commit/f2772ddcf22079686f49388ccc2450f89f455fb8))
 - update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([8f6933c](https://github.com///commit/8f6933cb762c96958aca716dcec0c6834672449d))
 - update CHANGELOG.md for version 0.1.0 release date correction ([ab6181c](https://github.com///commit/ab6181c653649cc8873cfbedf93c910142064086))
 - update CHANGELOG.md to include recent feature additions ([2ea4bd6](https://github.com///commit/2ea4bd64e3d2471c179599c67b314df106d3a391))
