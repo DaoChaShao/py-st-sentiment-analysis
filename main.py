@@ -19,18 +19,30 @@
 }
 """
 
-from utilis.tools import tokenizer, IMDBDataset
+from utilis.tools import paths_getter, tokenizer, IMDBDataset, Timer, IMDBDataLoader
 
 
 def main() -> None:
     """ Main Function """
     DATASET_PATH: str = "imdb"
-    dataset = IMDBDataset(DATASET_PATH)
-    dataset.path_getter()
-    pos, neg, nan = dataset.labels_checker()
-    print(pos)
-    print(neg)
-    print(nan)
+    CATEGORY: str = "train"
+    paths: list[str] = paths_getter(DATASET_PATH, CATEGORY)
+    print(paths[4])
+    # imdb = IMDBDataset(DATASET_PATH, CATEGORY)
+    text = tokenizer(paths[4])
+    print(text)
+
+    # with Timer(2, "IMDB Dataset Processing") as timer:
+    #     dataset = imdb.path_getter()
+    #     print(len(dataset))
+    #     # print(dataset[4])
+    # print(timer)
+
+    # batch_size: int = 2
+    # with Timer(2, "IMDB DataLoader Processing") as timer:
+    #     data_loader = IMDBDataLoader(dataset, batch_size)
+    #     print(len(data_loader))
+
 
 if __name__ == "__main__":
     main()
