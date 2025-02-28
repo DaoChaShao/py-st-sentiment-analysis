@@ -10,7 +10,6 @@ from json import load
 from os import path, listdir
 from re import sub, search
 from time import perf_counter
-from torch.utils.data import Dataset, DataLoader
 
 from random import seed
 from numpy import random
@@ -107,100 +106,7 @@ def paths_getter(root_file_path: str, category: str) -> list[str] | None:
     return paths
 
 
-class IMDBDataset(Dataset):
-    """ The IMDB Dataset Class """
-
-    def __init__(self, file_path: str, category: str = "train") -> None:
-        """ Initialize the IMDB Dataset Class
-
-        :param file_path: str, the file path to the dataset
-        """
-        self._file_path: str = file_path
-        self._category: str = category
-        self._train: list = []
-        self._test: list = []
-        self._train_paths: list = []
-        self._test_paths: list = []
-        self._ignore: list = [".DS_Store", ".gitignore"]
-        self.path_getter()
-
-    def path_getter(self) -> list[str] | None:
-        """ Get the file paths for the training and testing data
-
-        :param category: str, the category of the data
-        """
-        if path.exists(self._file_path):
-            imdb: list = [path.join("imdb/", file) for file in listdir(self._file_path) if file not in self._ignore]
-            # print(imdb)
-
-            for file in imdb:
-                if file.endswith("train"):
-                    self._train = [path.join(file, group) for group in listdir(file) if group not in self._ignore]
-                    # print(f"Training Data: {self._train}")
-                elif file.endswith("test"):
-                    self._test = [path.join(file, group) for group in listdir(file) if group not in self._ignore]
-                    # print(f"Testing Data: {self._test}")
-
-            match self._category:
-                case "train":
-                    for file in self._train:
-                        self._train_paths.extend(
-                            [path.join(file, data) for data in listdir(file) if data not in self._ignore])
-                    # print(f"The length of Training Paths: {len(self._train_paths)}")
-                    # print(f"The example of Training Paths: {self._train_paths[:3]}")
-                case "test":
-                    for file in self._test:
-                        self._test_paths.extend(
-                            [path.join(file, data) for data in listdir(file) if data not in self._ignore])
-                    # print(f"The length of Testing Paths: {len(self._test_paths)}")
-                    # print(f"The example of Testing Paths: {self._test_paths[:3]}")
-        else:
-            raise FileNotFoundError(f"{self._file_path} does not exist.")
-
-    def __len__(self):
-        """ Get the length of the dataset """
-        return len(self._train_paths) + len(self._test_paths)
-
-    def labels_checker(self) -> tuple[int, int, int]:
-        """ Check the labels of the dataset """
-        pos_labels: list[int] = [1, 2, 3, 4]
-        neg_labels: list[int] = [7, 8, 9, 10]
-        pos: list[int] = []
-        neg: list[int] = []
-        nan: list[int] = []
-
-        for index in range(len(self)):
-            _, _, label = self[index]
-            if label in pos_labels:
-                pos.append(label)
-            elif label in neg_labels:
-                neg.append(label)
-            else:
-                nan.append(label)
-        return len(pos), len(neg), len(nan)
-
-    def __getitem__(self, index: int, category: str = "train") -> tuple[list[str], int, int] | None:
-        """ Get the item of the dataset
-
-        :param index: int, the index of the dataset
-        :param category: str, the category of the data
-        :return: tuple[list[str], int, int], the words, position, and label
-        """
-        match category:
-            case "train":
-                file_path: str = self._train_paths[index]
-                words: list[str] = tokenizer(file_path)
-                position, label = labels_getter(file_path)
-                return words, position, label
-            case "test":
-                file_path: str = self._test[index]
-                words: list[str] = tokenizer(file_path)
-                position, label = labels_getter(file_path)
-                label = 0 if label < 5 else 1
-                return words, position, label
-
-
-class Seed(object):
+class SeedSetter(object):
 
     def __init__(self, randomness: int = 9527, description: str = None):
         """ Initialize the Seed class
@@ -240,21 +146,3 @@ class Seed(object):
 
     def __repr__(self):
         return f"The seed of {self._description} is {self._randomness} and OUT."
-
-
-class IMDBDataLoader(DataLoader):
-    """ The IMDB Data Loader Class """
-
-    def __init__(self, dataset, batch: int, shuffle: bool = True):
-        super().__init__(
-            dataset=dataset,
-            batch_size=batch,
-            shuffle=shuffle,
-            collate_fn=self.collate_fn
-        )
-
-    @staticmethod
-    def collate_fn(batch):
-        """ Collate the batch size """
-        comments, labels = zip(*batch)
-        return comments, labels
