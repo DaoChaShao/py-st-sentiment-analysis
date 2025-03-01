@@ -6,11 +6,13 @@
 # @File     :   models.py
 # @Desc     :
 
-from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
+from openai import OpenAI
+from torch import nn
 
 
 class Opener(object):
+    """ The OpenAI API Class """
 
     def __init__(self, temperature: float = 0.7, top_p: float = 0.9) -> None:
         """ Initialize the OpenAI API
@@ -49,3 +51,43 @@ class Opener(object):
             top_p=self._top_p,
         )
         return completion.choices[0].message.content
+
+
+class IMDBEmbedding(nn.Module):
+    """ The IMDB Embedding Class """
+
+    def __init__(self, dictionary, max_len: int, dimensions: int = 256, division: int = 2) -> None:
+        """ Initialize the IMDB Embedding Class
+
+        :param dictionary: the dictionary of the dataset
+        :param max_len: the maximum length of the dataset
+        :param dimensions: the dimensions of the dataset
+        :param division: the division of the dataset
+        """
+        super().__init__()
+        self._embedding = nn.Embedding(
+            num_embeddings=len(dictionary),
+            embedding_dim=dimensions,
+            padding_idx=dictionary.TAG_PAD,
+        )
+
+        self.fc = nn.Linear(max_len * dimensions, division)
+
+    def forward(self, x):
+        """ Forward the input through the network
+
+        :param x: the input x: [batch_size, max_len, dimensions]
+        :return: the output of the network
+        """
+        x = self._embedding(x)
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+        return nn.functional.log_softmax(x, dim=-1)
+
+
+def trainer():
+    pass
+
+
+def tester():
+    pass
