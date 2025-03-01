@@ -5,6 +5,10 @@
 
 ### Features
 
+- add the torch dictionary ([6767c8a](https://github.com///commit/6767c8ab86a9c5bc9b28b008c2c6760e8071e46c))
+- add tqdm dependency for progress tracking in data processing ([4b70499](https://github.com///commit/4b7049992896639906f3eae2fbec2006795076dd))
+- add Word2Sequence class for word indexing and transformation ([1f7832e](https://github.com///commit/1f7832e4186c686163f3daede05fa89f6296091d))
+- add IMDBEmbedding class for dataset embedding and processing ([1bc8135](https://github.com///commit/1bc81355e7a522972f78301da4067bdfb4a17397))
 - update main.py to enhance dataset processing with random selection and improved data loading ([198331e](https://github.com///commit/198331e19c391d06a3250839e0be4beccd874b3f))
 - add IMDBDataset and IMDBDataLoader classes for dataset management ([bc9aa18](https://github.com///commit/bc9aa186d97cb9422e13810bac6ddcf1068c3c48))
 - enhance tokenizer and add paths_getter for improved data handling ([875a922](https://github.com///commit/875a92257e51406bdc203806edc0c70f86e295f0))
@@ -36,7 +40,7 @@
 
 ### Docs
 
-- update CHANGELOG.md to include recent feature enhancements and corrections ([a35aecc](https://github.com///commit/a35aecc79632340ab1339111113e2b4af4193fed))
+- update CHANGELOG.md to include recent feature enhancements and corrections ([8eeb0a1](https://github.com///commit/8eeb0a1844fe1b81fad436d5fb15b0947acaa31f))
 - update CHANGELOG.md to reflect recent feature additions and updates ([97e5f21](https://github.com///commit/97e5f2157a219cc74fba33c0e63de18ca138d59b))
 - update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([f2772dd](https://github.com///commit/f2772ddcf22079686f49388ccc2450f89f455fb8))
 - update CHANGELOG.md to include recent feature additions for IMDBDataset class and integration ([8f6933c](https://github.com///commit/8f6933cb762c96958aca716dcec0c6834672449d))
@@ -49,6 +53,7 @@
 
 ### Code Refactoring
 
+- update main.py to improve dataset processing and batch handling ([43f9043](https://github.com///commit/43f90438eb44afa08349da7130f62ea5e778f912))
 - remove IMDBDataset and IMDBDataLoader classes to streamline dataset management ([8f7d5ed](https://github.com///commit/8f7d5ed11401e80fb53b148a42e28a192e1c4886))
 
 ### Dependencies
