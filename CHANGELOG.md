@@ -40,6 +40,7 @@
 
 ### Docs
 
+- update CHANGELOG.md to reflect recent feature enhancements and corrections ([7e3737a](https://github.com///commit/7e3737aae9752072aa73662c77bd03c2dd183402))
 - update CHANGELOG.md to include recent feature enhancements and corrections ([8eeb0a1](https://github.com///commit/8eeb0a1844fe1b81fad436d5fb15b0947acaa31f))
 - update CHANGELOG.md to reflect recent feature additions and updates ([97e5f21](https://github.com///commit/97e5f2157a219cc74fba33c0e63de18ca138d59b))
 - update CHANGELOG.md to include addition of Seed class and updates to __getitem__ method ([f2772dd](https://github.com///commit/f2772ddcf22079686f49388ccc2450f89f455fb8))
